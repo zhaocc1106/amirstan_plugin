@@ -15,8 +15,8 @@ namespace amirstan {
 namespace plugin {
 
 enum class ResizeMode : int32_t {
-  kNEAREST = 0,  //!< ND (0 < N <= 8) nearest neighbor resizing.
-  kLINEAR = 1    //!< Can handle linear (1D), bilinear (2D), and trilinear (3D)
+  kNEAREST = 1,  //!< ND (0 < N <= 8) nearest neighbor resizing.
+  kLINEAR = 0    //!< Can handle linear (1D), bilinear (2D), and trilinear (3D)
                  //!< resizing.
 };
 
@@ -31,7 +31,11 @@ GridSamplePluginDynamic::GridSamplePluginDynamic(const std::string &name,
     : PluginDynamicBase(name),
       mMode(mode),
       mPaddingMode(paddingMode),
-      mAlignCorners(alignCorners) {}
+      mAlignCorners(alignCorners) {
+  std::cout << "GridSamplePluginDynamic op, name: " << name
+            << ", mMode: " << mMode << ", mPaddingMode: " << mPaddingMode
+            << ", mAlignCorners: " << mAlignCorners << std::endl;
+}
 
 GridSamplePluginDynamic::GridSamplePluginDynamic(const std::string name,
                                                  const void *data,
